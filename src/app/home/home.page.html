@@ -1,20 +1,28 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header>
+  <ion-toolbar color="primary">
     <ion-title>
-      Blank
+      Pomodoro Timer
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="time-display">
+    <h2>Current Time</h2>
+    <p>{{ formatCurrentTime() }}</p>
+  </div>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="timer-container">
+    <h2>{{ isWorkTime ? 'Work Time' : 'Break Time' }}</h2>
+    <div class="timer-display">
+      {{ formatTime(remainingSeconds) }}
+    </div>
+    
+    <ion-button 
+      expand="block" 
+      color="primary" 
+      (click)="isRunning ? resetTimer() : startPomodoro()">
+      {{ isRunning ? 'Reset' : 'Start Pomodoro' }}
+    </ion-button>
   </div>
 </ion-content>
